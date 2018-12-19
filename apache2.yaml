@@ -3,7 +3,7 @@
   become: yes
   become_method: su
   become_user: root
-  become_pass: "{{root_password}}"
+  become_password: "{{root_password}}"
   tasks:
 
   - name: remove Apache2
