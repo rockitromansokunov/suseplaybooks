@@ -1,0 +1,9 @@
+  tasks:
+    - name: Remove Apache2
+      zypper:
+      name: apache2
+      state: absent
+    - name: Install Apache2
+      zypper:
+      name: apache2
+      state: present
