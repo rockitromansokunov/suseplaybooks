@@ -14,7 +14,7 @@
       mode: 0755
 
   - name: Change to local download directory
-    command: chdir="{{java_local_download_folder}}"
+    command: cd="{{java_local_download_folder}}"
   
   - name: Download Java
 #    become_user: "{{java_download_user}}"
