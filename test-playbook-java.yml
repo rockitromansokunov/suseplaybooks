@@ -1,21 +1,10 @@
 ---
-- hosts: localhost
-  vars:
-    java_download_user: root
-    java_download_url: https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
-    java_local_download_folder: /home/"{{java_download_user}}"/Downloads
-    java_path_name: 
-    java_archive: jdk-8u191-linux-x64.tar.gz
-    java_rpm: jdk-8u191-linux-x64.rpm
-    root_user: root
-    user: root
-    group: user_group
   tasks:
 
-  - name: Transformation to the root user
-    become_user: "{{root_user}}"
-    become_method: su
-    ansible_become_pass: "{{root_password}}"
+#  - name: Transformation to the root user
+#    become_user: "{{root_user}}"
+#    become_method: su
+#    ansible_become_pass: "{{root_password}}"
 
   - name: Create local download directory
     file:
@@ -27,15 +16,15 @@
     command: chdir="{{java_local_download_folder}}"
   
   - name: Download Java
-    become_user: "{{java_download_user}}"
+#    become_user: "{{java_download_user}}"
     command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{java_download_url}} creates={{java_archive}}"
 
   - name: Fix ownership
-    become_user: "{{user}}"
+#    become_user: "{{user}}"
     file: "state=directory path={{java_path_name}} owner={{user}} group={{user}} recurse=yes"
 
   - zypper: "name={{java_local_download_folder}}/{{java_rpm}} become_user={{user_group}} oldpackage=yes state=present"
 
   - name: Clean up
-    become_user: "{{user}}"
+#    become_user: "{{user}}"
     file: "state=absent path={{java_archive}}"
