@@ -33,7 +33,7 @@
 #      recurse: yes
 
   - name: Install downloaded Java package
-      zypper: "name={{java_local_download_folder}}/{{java_rpm}} oldpackage=yes state=present"
+    zypper: "name={{java_local_download_folder}}/{{java_rpm}} oldpackage=yes state=present"
 
   - name: Clean up
 #    become_user: "{{user}}"
