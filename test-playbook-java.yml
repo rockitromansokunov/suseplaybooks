@@ -16,7 +16,7 @@
   - name: Change to local download directory
     file:
       state: directory
-      path: {{java_path_name}}
+      path: "{{java_path_name}}"
 #    command: cd="{{java_local_download_folder}}"
   
   - name: Download Java
