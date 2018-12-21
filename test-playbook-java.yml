@@ -22,7 +22,7 @@
   - name: Download Java
 #    become_user: "{{java_download_user}}"
     command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{java_download_url}} creates={{java_archive}}"
-    
+
 #  - name: Fix ownership
 #    become_user: "{{user}}"
 #    file:
