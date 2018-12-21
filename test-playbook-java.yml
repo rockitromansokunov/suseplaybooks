@@ -11,6 +11,7 @@
     user: root
     group: user_group
   tasks:
+
   - name: Transformation to the root user
     become_user: "{{root user}}"
     become_method: su
