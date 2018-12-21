@@ -14,15 +14,23 @@
       mode: 0755
 
   - name: Change to local download directory
-    command: cd="{{java_local_download_folder}}"
+    file:
+      state: directory
+      path: {{java_path_name}}
+#    command: cd="{{java_local_download_folder}}"
   
   - name: Download Java
 #    become_user: "{{java_download_user}}"
     command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{java_download_url}} creates={{java_archive}}"
 
-  - name: Fix ownership
+#  - name: Fix ownership
 #    become_user: "{{user}}"
-    file: "state=directory path={{java_path_name}} owner={{user}} group={{user}} recurse=yes"
+#    file:
+#      state: directory
+#      path: {{java_path_name}}
+#      owner: {{user}}
+#      group: {{user}}
+#      recurse: yes
 
   - zypper: "name={{java_local_download_folder}}/{{java_rpm}} become_user={{user_group}} oldpackage=yes state=present"
 
