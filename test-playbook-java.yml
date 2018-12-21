@@ -1,4 +1,5 @@
 ---
+- hosts: webservers
   tasks:
 
 #  - name: Transformation to the root user
