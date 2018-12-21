@@ -7,13 +7,13 @@
     java_path_name: 
     java_archive: jdk-8u191-linux-x64.tar.gz
     java_rpm: jdk-8u191-linux-x64.rpm
-    root_user: root    
+    root_user: root
     user: root
     group: user_group
   tasks:
 
   - name: Transformation to the root user
-    become_user: "{{root user}}"
+    become_user: "{{root_user}}"
     become_method: su
     ansible_become_pass: "{{root_password}}"
 
