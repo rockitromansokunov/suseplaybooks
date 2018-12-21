@@ -3,7 +3,7 @@
   vars:
     java_download_user: root
     java_download_url: https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
-    java_local_download_folder: {{home/{{java_download_user}}/Downloads}}
+    java_local_download_folder: /home/"{{java_download_user}}"/Downloads
     java_path_name: 
     java_archive: jdk-8u191-linux-x64.tar.gz
     java_rpm: jdk-8u191-linux-x64.rpm
@@ -13,12 +13,12 @@
   tasks:
   - name: Create local download directory
     file:
-      path: {{java_local_download_folder}}
+      path: "{{java_local_download_folder}}"
       state: directory
       mode: 0755
 
   - name: Change to local download directory
-    command: chdir={{java_local_download_folder}}
+    command: chdir="{{java_local_download_folder}}"
   
   - name: Download Java
     become_user: "{{java_download_user}}"
@@ -26,10 +26,10 @@
 
   - name: Fix ownership
     become_user: "{{user}}"
-    file: state=directory path={{java_path_name}} owner={{user}} group={{user}} recurse=yes
+    file: "state=directory path={{java_path_name}} owner={{user}} group={{user}} recurse=yes"
 
-  - zypper: name={{java_local_download_folder}}/{{java_rpm}} become_user={{user_group}} oldpackage=yes state=present 
+  - zypper: "name={{java_local_download_folder}}/{{java_rpm}} become_user={{user_group}} oldpackage=yes state=present"
 
   - name: Clean up
     become_user: "{{user}}"
-    file: state=absent path={{java_archive}}
+    file: "state=absent path={{java_archive}}"
