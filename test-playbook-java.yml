@@ -23,6 +23,9 @@
 #    become_user: "{{java_download_user}}"
     command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{java_download_url}} creates={{java_archive}}"
 
+  - name: Unpack archive
+    command: "tar -zxf {{java_archive}} -C {{archive_unpack_dir}} creates={{java_name}}"   
+    
 #  - name: Fix ownership
 #    become_user: "{{user}}"
 #    file:
