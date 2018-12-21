@@ -14,7 +14,7 @@
   - name: Transformation to the root user
     become_user: "{{root user}}"
     become_method: su
-    ansible_become_pass: {{root_password}}
+    ansible_become_pass: "{{root_password}}"
 
   - name: Create local download directory
     file:
