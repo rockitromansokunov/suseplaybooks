@@ -24,7 +24,10 @@
     command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{java_download_url}} creates={{java_archive}}"
 
   - name: Unpack archive
-    command: "tar -zxf {{java_archive}} -C {{archive_unpack_dir}} creates={{java_version_name}}"   
+    command: "tar -zxf {{java_archive}} -C {{archive_unpack_dir}} creates={{java_version_name}}"
+
+  - name: Fix ownership on the unpackage folder
+    file: state=directory path={{java_version_name}} owner=root group=root recurse=yes    
     
 #  - name: Fix ownership
 #    become_user: "{{user}}"
